@@ -80,6 +80,8 @@ export async function POST(req: Request) {
 
   const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
+  console.log(`[analyze] role="${jobTitle.trim()}"`);
+
   const userMessage = description?.trim()
     ? `Job title: ${jobTitle}\n\nRole description: ${description}`
     : `Job title: ${jobTitle}`;
