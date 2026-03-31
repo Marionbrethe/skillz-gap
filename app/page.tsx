@@ -351,7 +351,10 @@ function InputScreen({ onResult }: { onResult: (data: Analysis, jobTitle: string
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ jobTitle, description }),
       });
-      if (!res.ok || !res.body) throw new Error("Request failed");
+      if (!res.ok || !res.body) {
+        const text = await res.text().catch(() => "");
+        throw new Error(`HTTP ${res.status}: ${text || "Request failed"}`);
+      }
       const reader = res.body.getReader();
       const dec = new TextDecoder();
       let raw = "";
@@ -362,8 +365,8 @@ function InputScreen({ onResult }: { onResult: (data: Analysis, jobTitle: string
       }
       const parsed: Analysis = JSON.parse(raw.trim());
       onResult(parsed, jobTitle.trim());
-    } catch {
-      setError("Something went wrong. Please try again.");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
       setLoading(false);
     }
