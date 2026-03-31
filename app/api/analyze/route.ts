@@ -85,7 +85,7 @@ export async function POST(req: Request) {
     : `Job title: ${jobTitle}`;
 
   const stream = await client.messages.stream({
-    model: "claude-haiku-4-5",
+    model: "claude-sonnet-4-20250514",
     max_tokens: 1500,
     system: SYSTEM_PROMPT,
     messages: [{ role: "user", content: userMessage }],
