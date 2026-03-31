@@ -166,7 +166,7 @@ function ResultsView({ data, jobTitle, onReset }: { data: Analysis; jobTitle: st
     <div className="max-w-2xl mx-auto px-4 py-10">
       <div className="flex items-start justify-between mb-8 gap-4">
         <div>
-          <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">AI Career Lens</p>
+          <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">Bottleneck</p>
           <h1 className="text-2xl font-bold">{jobTitle}</h1>
           <p className="text-xs text-gray-400 mt-1">
             When intelligence is cheap — what still limits you, and where can you intervene?
@@ -269,6 +269,66 @@ function ResultsView({ data, jobTitle, onReset }: { data: Analysis; jobTitle: st
           </div>
         </Card>
       </div>
+
+      <MethodologySection />
+    </div>
+  );
+}
+
+// ── Methodology footer ────────────────────────────────────────────────────────
+
+function MethodologySection() {
+  return (
+    <div className="mt-16 border-t border-gray-100 pt-10 pb-10">
+      <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Methodology</p>
+      <p className="text-sm text-gray-500 leading-relaxed mb-6">
+        This tool applies Dario Amodei's <em>marginal returns to intelligence</em> framework from{" "}
+        <a
+          href="https://darioamodei.com/essay/machines-of-loving-grace"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-gray-700"
+        >
+          Machines of Loving Grace
+        </a>
+        . The central question isn't "what will AI replace?" — it's "when intelligence is cheap, what
+        becomes the real bottleneck?"
+      </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+        <div>
+          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Four framework questions</p>
+          <ol className="space-y-1.5 list-none">
+            {[
+              "What is the real constraint right now (not intelligence)?",
+              "What gets faster when intelligence gets cheaper?",
+              "What does NOT get faster — and why?",
+              "Where can human capability still change the system?",
+            ].map((q, i) => (
+              <li key={i} className="flex gap-2 text-sm text-gray-600">
+                <span className="shrink-0 text-xs text-gray-400 font-mono mt-0.5">{i + 1}.</span>
+                {q}
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div>
+          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Five constraint types</p>
+          <ul className="space-y-1.5">
+            {[
+              { type: "Speed of outside world" as ConstraintType, desc: "Reality moves at its own pace regardless of analysis quality" },
+              { type: "Need for data" as ConstraintType, desc: "Missing, noisy, or sparse data that intelligence cannot replace" },
+              { type: "Intrinsic complexity" as ConstraintType, desc: "Nonlinear, chaotic, or feedback-heavy systems that resist prediction" },
+              { type: "Human & societal constraints" as ConstraintType, desc: "Org friction, laws, ethics, adoption, trust" },
+              { type: "Physical laws" as ConstraintType, desc: "Hard ceilings on compute, energy, latency, matter" },
+            ].map(({ type, desc }) => (
+              <li key={type} className="flex flex-col gap-0.5">
+                <ConstraintTag type={type} />
+                <p className="text-xs text-gray-500 pl-0.5">{desc}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
@@ -312,7 +372,7 @@ function InputScreen({ onResult }: { onResult: (data: Analysis, jobTitle: string
   if (loading) return <LoadingState />;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4">
+    <div className="min-h-screen flex flex-col items-center px-4 pt-20 pb-10">
       <div className="w-full max-w-md">
         <div className="mb-8 flex items-center gap-2">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -320,7 +380,7 @@ function InputScreen({ onResult }: { onResult: (data: Analysis, jobTitle: string
             <circle cx="10" cy="10" r="3" stroke="#0f0f0f" strokeWidth="1.5" opacity="0.4" />
             <line x1="15.5" y1="15.5" x2="21" y2="21" stroke="#0f0f0f" strokeWidth="2" strokeLinecap="round" />
           </svg>
-          <span className="text-sm font-semibold tracking-tight">AI Career Lens</span>
+          <span className="text-sm font-semibold tracking-tight">Bottleneck</span>
         </div>
 
         <h1 className="text-3xl font-bold mb-2 leading-tight">
@@ -383,6 +443,9 @@ function InputScreen({ onResult }: { onResult: (data: Analysis, jobTitle: string
         <p className="mt-6 text-xs text-gray-400 leading-relaxed">
           This is for thinking, not career advice. The framework forces a different question: not "what will AI replace?" but "what still needs a human to move?"
         </p>
+      </div>
+      <div className="w-full max-w-2xl">
+        <MethodologySection />
       </div>
     </div>
   );

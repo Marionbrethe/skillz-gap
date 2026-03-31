@@ -2,14 +2,14 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI Career Lens",
+  title: "Bottleneck",
   description:
-    "Analyse how AI changes your job using Amodei's marginal returns to intelligence framework.",
+    "When intelligence is cheap, what actually limits you? Map the real constraints in your role using Amodei's marginal returns to intelligence framework.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "CareerLens",
+    title: "Bottleneck",
   },
   other: {
     "mobile-web-app-capable": "yes",

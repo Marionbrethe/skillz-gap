@@ -1,7 +1,7 @@
 {
-  "name": "AI Career Lens",
-  "short_name": "CareerLens",
-  "description": "Analyse how AI changes your job using Amodei's marginal returns to intelligence framework.",
+  "name": "Bottleneck",
+  "short_name": "Bottleneck",
+  "description": "When intelligence is cheap, what actually limits you? Map the real constraints in your role.",
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
   "display": "standalone",
