@@ -86,7 +86,7 @@ export async function POST(req: Request) {
 
   const stream = await client.messages.stream({
     model: "claude-sonnet-4-20250514",
-    max_tokens: 1500,
+    max_tokens: 2000,
     system: SYSTEM_PROMPT,
     messages: [{ role: "user", content: userMessage }],
   });
